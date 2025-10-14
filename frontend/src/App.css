@@ -1,0 +1,332 @@
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  background: #121212;
+  color: #fff;
+  overflow-x: hidden;
+  display: flex;
+  justify-content: center;
+  padding: 40px;
+}
+
+.container {
+  position: relative;
+  min-height: 100vh;
+  padding: 30px;
+  width: 80%;
+  max-width: 800px;
+  border-radius: 15px;
+  z-index: 1;
+}
+
+/* FUTURISTIC THEME */
+.container.futuristic {
+  background: rgba(10, 10, 30, 0.95);
+  color: #fff;
+  box-shadow: 0 0 20px rgba(0, 255, 234, 0.2), 0 0 30px rgba(216, 86, 191, 0.2);
+  overflow: hidden;
+}
+
+.container.futuristic::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(216,86,191,0.6) 2px, transparent 3px);
+  background-size: 40px 40px;
+  z-index: -1;
+  pointer-events: none;
+  animation: pulseDots 4s ease-in-out infinite;
+}
+
+@keyframes pulseDots {
+  0%,100% { transform: scale(1); opacity: 0.6; }
+  50% { transform: scale(1.1); opacity: 0.8; }
+}
+
+/* GLITCH TEXT */
+h1, .glitch-text {
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: 600;
+  font-size: 2.5rem;
+  color: #fff;
+  text-shadow: 0 0 10px #00ffeA, 0 0 20px #d856bf;
+}
+
+/* INPUTS */
+.input-box {
+  display: flex;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.input-box input,
+.input-box select {
+  padding: 10px;
+  border-radius: 8px;
+  flex: 1;
+  border: none;
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+  box-shadow: 0 0 5px rgba(0,0,0,0.5);
+}
+
+.input-box button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  background: #00ffeA;
+  color: #121212;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.input-box button:hover {
+  background: #d856bf;
+}
+
+/* TASK LIST */
+.task-list { list-style: none; padding: 0; }
+.task-item { margin: 10px 0; padding: 15px; border-radius: 10px; background: rgba(255,255,255,0.1); transition: 0.2s; }
+.task-item.done { opacity: 0.7; text-decoration: line-through; }
+.task-item:hover { transform: translateY(-2px); }
+
+.priority { padding: 5px 5px; border-radius: 6px; font-size: 0.8rem; width:10rem;}
+.priority.low { background: #10b981; }
+.priority.medium { background: #f59e0b; }
+.priority.high { background: #ef4444; }
+
+.comment-section {
+  margin-top: 25px;
+  padding: 15px;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.05);
+}
+
+.comment-section ul { padding: 10px; }
+.comment-section li { padding: 10px; margin: 5px 0; border-radius: 6px; background: rgba(255,255,255,0.15); }
+
+.search-bar {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+  margin-bottom: 20px;
+}
+
+.theme-toggle {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  background: #2563eb;
+  color: #fff;
+  cursor: pointer;
+  transition: 0.3s;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.theme-toggle:hover { background: #1d4ed8; }
+/* Input Box Layout */
+.input-box {
+  display: flex;
+  gap: 12px; /* Slightly more spacing for clarity */
+  margin: 20px 0;
+  align-items: center; /* Vertically center input/select/button */
+}
+
+.input-box input,
+.input-box select {
+  padding: 12px 15px; /* Comfortable padding */
+  border-radius: 8px;
+  flex: 1;
+  min-width: 0; /* Prevent overflow */
+  border: none;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  font-size: 1rem;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  transition: background 0.3s, box-shadow 0.3s;
+}
+
+.input-box input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.input-box input:focus,
+.input-box select:focus {
+  outline: none;
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 0 10px rgba(0, 255, 234, 0.5);
+}
+
+/* Dropdown Styling */
+.input-box select {
+  max-width: 150px; /* Keep dropdown compact */
+  cursor: pointer;
+}
+
+.input-box select option {
+  background: #1a1a1a; /* Match dark theme */
+  color: #fff;
+}
+
+/* Buttons Styling */
+.input-box button,
+.btn-group button {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  min-width: 90px;
+  background: linear-gradient(90deg, #00ffeA, #d856bf);
+  color: #121212;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.3s, box-shadow 0.3s;
+  text-align: center;
+}
+
+.input-box button:hover,
+.btn-group button:hover {
+  background: linear-gradient(90deg, #d856bf, #00ffeA);
+  box-shadow: 0 0 10px rgba(0, 255, 234, 0.7), 0 0 15px rgba(216, 86, 191, 0.7);
+  transform: translateY(-2px);
+}
+
+/* Button Alignment in Task Items */
+.btn-group {
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.btn-group button {
+  flex: 1; /* Make buttons evenly spaced */
+}
+
+/* Search Bar Alignment */
+.search-bar {
+  width: 100%;
+  padding: 12px 15px;
+  border-radius: 8px;
+  border: none;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  font-size: 1rem;
+  margin-bottom: 20px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.search-bar::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.search-bar:focus {
+  outline: none;
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 0 10px rgba(0, 255, 234, 0.5);
+}
+.container {
+  width: 90%;
+  max-width: 1200px; /* use more space on large screens */
+  min-height: 80vh;   /* fill most of the screen vertically */
+  padding: 30px;
+  margin: 20px auto;
+  border-radius: 15px;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  background: #fff; /* default professional */
+  overflow: hidden; /* prevent expansion issues */
+}
+.task-list {
+  list-style: none;
+  padding: 0;
+  flex-grow: 1;           /* expand to available space */
+  overflow-y: auto;       /* scroll if tasks exceed */
+  margin-bottom: 20px;
+  max-height: 70vh;       /* limit height on large screens */
+}
+
+.task-list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.task-list::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+.input-box {
+  display: flex;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.input-box input,
+.input-box select,
+.input-box button {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+.input-box button {
+  min-width: 120px;
+  background: #2563eb;
+  color: #fff;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .container {
+    width: 95%;
+    padding: 15px;
+  }
+
+  .input-box {
+    flex-direction: column;
+  }
+
+  .input-box input,
+  .input-box select,
+  .input-box button {
+    width: 100%;
+  }
+
+  .btn-group {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .btn-group button {
+    width: 100%;
+  }
+
+  .task-list {
+    max-height: 50vh; /* smaller screen, smaller task list */
+  }
+}
+.search-bar {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 1rem;
+}
+
+@media (max-width: 768px) {
+  .search-bar {
+    width: 100%;
+  }
+}
