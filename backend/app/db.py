@@ -4,23 +4,20 @@ import os
 mongo = PyMongo()
 
 def init_db(app):
-    # Ensure Mongo URI exists
+    # Get MongoDB URI from app config or environment
     mongo_uri = app.config.get("MONGO_URI") or os.getenv("MONGO_URI")
-
     if not mongo_uri:
-        print("❌ MONGO_URI is missing. Please set it in environment variables.")
-        raise ValueError("MONGO_URI not found")
-
+        raise ConnectionError("❌ MONGO_URI missing. Add it in Render Environment Variables.")
+    
     app.config["MONGO_URI"] = mongo_uri
     mongo.init_app(app)
 
     # Test the connection
     try:
-        db = mongo.db
-        if db is None:
+        if mongo.db is None:
             raise ConnectionError("MongoDB object not initialized")
-        db.list_collection_names()
+        mongo.db.list_collection_names()
         print("✅ MongoDB connected successfully")
     except Exception as e:
-        print(f"❌ MongoDB connection failed: {e}")
+        print("❌ MongoDB connection failed:", e)
         raise e
