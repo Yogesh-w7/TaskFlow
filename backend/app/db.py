@@ -1,16 +1,26 @@
 from flask_pymongo import PyMongo
+import os
 
 mongo = PyMongo()
 
 def init_db(app):
+    # Ensure Mongo URI exists
+    mongo_uri = app.config.get("MONGO_URI") or os.getenv("MONGO_URI")
+
+    if not mongo_uri:
+        print("❌ MONGO_URI is missing. Please set it in environment variables.")
+        raise ValueError("MONGO_URI not found")
+
+    app.config["MONGO_URI"] = mongo_uri
     mongo.init_app(app)
-    
-    # Test the connection immediately
+
+    # Test the connection
     try:
-        # This will raise an exception if connection fails
-        mongo.db.list_collection_names()
+        db = mongo.db
+        if db is None:
+            raise ConnectionError("MongoDB object not initialized")
+        db.list_collection_names()
         print("✅ MongoDB connected successfully")
     except Exception as e:
-        print("❌ MongoDB connection failed:", e)
-        # Optionally raise an error to stop app from running
+        print(f"❌ MongoDB connection failed: {e}")
         raise e
